@@ -49,7 +49,7 @@ body {
 /* Navbar Layout - Logo Left, Links Right */
 .navbar {
   width: 100%;
-  background: rgba(46, 55, 99, 0.9);
+  background: rgba(46, 55, 99);
   padding: 1rem 2rem;
   color: white;
   position: sticky;
