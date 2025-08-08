@@ -3,43 +3,135 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tutorials Points</title>
+    <title>Tutorials Point</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Source+Code+Pro&display=swap"
-      rel="stylesheet"
-    />
   </head>
   <body>
-    <div class="notebook">
-      <!-- Navigation -->
-      <nav class="navbar">
-        <div class="nav-content">
-          <h1 class="nav-title">Tutorials Points</h1>
-          <ul class="nav-links">
-            <li><a href="frontend.html">Frontend</a></li>
-            <li><a href="backend.html">Backend</a></li>
-            <li><a href="database.html">Database</a></li>
-            <li><a href="devops.html">DevOps</a></li>
-          </ul>
-        </div>
+    <!-- Navbar -->
+    <header class="navbar">
+      <div class="logo">Tutorials Point</div>
+      <nav class="nav-links">
+        <button class="nav-item" data-target="frontend">Frontend</button>
+        <button class="nav-item" data-target="backend">Backend</button>
+        <button class="nav-item" data-target="database">Database</button>
+        <button class="nav-item" data-target="devops">DevOps</button>
       </nav>
+      <div class="navbar-actions">
+        <button id="theme-toggle" aria-label="Toggle Theme">🌙</button>
+        <button class="menu-toggle" aria-label="Toggle Menu">☰</button>
+      </div>
+    </header>
 
-      <!-- Main Content -->
-      <main class="notebook-pages">
-        <section class="welcome-section">
-  <h2>Welcome to My Learning Journey</h2>
-  <p>
-    Select a category from the navigation to begin exploring diverse domains of knowledge and skill development. 
-    This platform is designed to empower continuous growth by providing curated content, practical insights, 
-    and innovative resources tailored to fuel your passion for technology and personal advancement. 
-    Dive in, stay curious, and let’s build a future-proof skill set together.
-  </p>
-</section>
+    <!-- Sections -->
+    <main>
+      <!-- Frontend -->
+      <section id="frontend" class="content-section">
+        <div class="cards">
+          <div class="card">
+            <h3>JavaScript Basics</h3>
+            <a href="https://www.youtube.com/watch?v=PkZNo7MFNFg" target="_blank" class="btn">Watch on YouTube</a>
+          </div>
+          <div class="card">
+            <h3>CSS Flexbox</h3>
+            <a href="https://www.youtube.com/watch?v=1Rs2ND1ryYc" target="_blank" class="btn">Watch on YouTube</a>
+          </div>
+          <div class="card">
+            <h3>HTML Basics</h3>
+            <a href="https://www.youtube.com/watch?v=pQN-pnXPaVg" target="_blank" class="btn">Watch on YouTube</a>
+          </div>
+        </div>
+      </section>
 
-      </main>
-    </div>
+      <!-- Backend -->
+      <section id="backend" class="content-section">
+        
+        <div class="cards">
+          <div class="card">
+            <h3>Node.js Crash Course</h3>
+            <a href="https://www.youtube.com/watch?v=Oe421EPjeBE" target="_blank" class="btn">Watch on YouTube</a>
+          </div>
+          <div class="card">
+            <h3>Express.js Basics</h3>
+            <a href="https://www.youtube.com/watch?v=Oe421EPjeBE" target="_blank" class="btn">Watch on YouTube</a>
+          </div>
+          <div class="card">
+            <h3>REST APIs with Node</h3>
+            <a href="https://www.youtube.com/watch?v=Oe421EPjeBE" target="_blank" class="btn">Watch on YouTube</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Database -->
+      <section id="database" class="content-section">
+        
+        <div class="cards">
+          <div class="card">
+            <h3>MongoDB Basics</h3>
+            <a href="https://www.youtube.com/watch?v=9Pzj7Aj25lw" target="_blank" class="btn">Watch on YouTube</a>
+          </div>
+          <div class="card">
+            <h3>SQL Fundamentals</h3>
+            <a href="https://www.youtube.com/watch?v=9Pzj7Aj25lw" target="_blank" class="btn">Watch on YouTube</a>
+          </div>
+          <div class="card">
+            <h3>Database Design</h3>
+            <a href="https://www.youtube.com/watch?v=9Pzj7Aj25lw" target="_blank" class="btn">Watch on YouTube</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- DevOps -->
+      <section id="devops" class="content-section">
+        
+        <div class="cards">
+          <div class="card">
+            <h3>Docker for Beginners</h3>
+            <a href="https://www.youtube.com/watch?v=fqMOX6JJhGo" target="_blank" class="btn">Watch on YouTube</a>
+          </div>
+          <div class="card">
+            <h3>Git & GitHub Basics</h3>
+            <a href="https://www.youtube.com/watch?v=fqMOX6JJhGo" target="_blank" class="btn">Watch on YouTube</a>
+          </div>
+          <div class="card">
+            <h3>CI/CD Overview</h3>
+            <a href="https://www.youtube.com/watch?v=fqMOX6JJhGo" target="_blank" class="btn">Watch on YouTube</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      // Mobile menu toggle
+      document.querySelector(".menu-toggle").addEventListener("click", () => {
+        document.querySelector(".nav-links").classList.toggle("show");
+      });
+
+      // Section toggle + auto-close mobile menu
+      document.querySelectorAll(".nav-item").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".content-section")
+            .forEach((sec) => sec.classList.remove("active"));
+          document.getElementById(btn.dataset.target).classList.add("active");
+
+          const navLinks = document.querySelector(".nav-links");
+          if (window.innerWidth <= 768 && navLinks.classList.contains("show")) {
+            navLinks.classList.remove("show");
+          }
+        });
+      });
+
+      // Theme toggle
+      const themeToggle = document.getElementById("theme-toggle");
+      themeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+        themeToggle.textContent = document.body.classList.contains("dark")
+          ? "☀️"
+          : "🌙";
+      });
+
+      // Default show first section
+      document.querySelector(".nav-item").click();
+    </script>
   </body>
 </html>
