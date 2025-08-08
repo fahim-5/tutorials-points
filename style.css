@@ -1,328 +1,187 @@
-/* Modern CSS Reset with Smooth Scrolling */
-html {
-  scroll-behavior: smooth;
+:root {
+  --bg-color: #f5f7fa;
+  --text-color: #222;
+  --accent-color: #4e9af1;
+  --card-bg: #ffffff;
+  --shadow-color: rgba(0, 0, 0, 0.15);
+  --border-color: rgba(0, 0, 0, 0.08);
 }
 
-*,
-*::before,
-*::after {
+body.dark {
+  --bg-color: #181818;
+  --text-color: #f1f1f1;
+  --accent-color: #ff9800;
+  --card-bg: #242424;
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --border-color: rgba(255, 255, 255, 0.15);
+}
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Beautiful Color Palette */
-:root {
-  --primary: #43ee51;
-  --primary-dark: #1b1034;
-  --primary-light: #4895ef;
-  --secondary: #25f7bf;
-  --accent: #4cc9f0;
-  --light: #f8f9fa;
-  --dark: #212529;
-  --gray: #6c757d;
-  --success: #38b000;
-  --warning: #ffaa00;
-  --danger: #ef233c;
-}
-
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background-color: #f8fafc;
-  color: var(--dark);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
+  font-family: "Segoe UI", sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  transition: background 0.3s, color 0.3s;
 }
 
-/* Notebook Container with Subtle Pattern */
-.notebook {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background-image: radial-gradient(circle at 1px 1px, #e2e8f0 1px, transparent 0);
-  background-size: 20px 20px;
-}
-
-/* Gorgeous Navbar with Glass Morphism Effect */
-
-/* Navbar Layout - Logo Left, Links Right */
+/* Navbar */
 .navbar {
-  width: 100%;
-  background: rgba(46, 55, 99);
-  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 1.2rem;
+  background: var(--accent-color);
   color: white;
+  box-shadow: 0 4px 8px var(--shadow-color);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
 }
 
-.nav-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between; /* This separates logo and links */
-  align-items: center; /* Vertically centers items */
-  flex-wrap: wrap; /* Allows wrapping on small screens */
-}
-
-.nav-brand {
-  display: flex;
-  flex-direction: column;
-}
-
-.nav-title {
-  font-size: 1.85rem;
-  font-weight: 700;
-  background: linear-gradient(to right, white, #e2e8f0);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.logo {
+  font-weight: bold;
+  font-size: 1.4rem;
 }
 
 .nav-links {
   display: flex;
-  list-style: none;
-  gap: 1.75rem;
-  margin: 0; /* Remove default margin */
-  padding: 0; /* Remove default padding */
+  gap: 1rem;
 }
 
-/* Rest of your existing navbar styles... */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
 
-.nav-links a {
+.nav-links button,
+#theme-toggle,
+.menu-toggle {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.nav-links button:hover,
+#theme-toggle:hover,
+.menu-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.menu-toggle {
+  font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: var(--accent-color);
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    padding: 0.5rem 0;
+    z-index: 1500;
+    border-radius: 10px;
+    box-shadow: 0 12px 24px var(--shadow-color);
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+}
+
+/* Sections */
+.content-section {
+  display: none;
+  padding: 1.5rem;
+}
+
+.content-section.active {
+  display: block;
+  animation: fadeIn 0.4s ease;
+}
+
+/* Cards grid */
+.cards {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Card */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 8px 20px var(--shadow-color);
+  transform: translateY(0) translateZ(0);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 28px var(--shadow-color);
+}
+
+.card h3 {
+  margin: 0.8rem 0;
+  font-size: 1.1rem;
+}
+
+/* Button */
+.btn {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  background: var(--accent-color);
   color: white;
   text-decoration: none;
-  font-weight: 500;
-  padding: 0.5rem 0;
-  position: relative;
-  transition: all 0.3s ease;
+  border-radius: 6px;
+  transition: background 0.2s, transform 0.2s;
 }
 
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: white;
-  transition: width 0.3s ease;
+.btn:hover {
+  background: #357ac9;
+  transform: scale(1.05);
 }
 
-.nav-links a:hover::after {
-  width: 100%;
+/* Responsive card columns */
+@media (max-width: 1024px) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
-.nav-links a.active {
-  font-weight: 600;
-}
-
-/* Main Content with Delicate Animation */
-.notebook-pages {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin: 3rem 0;
-  padding: 0 2rem;
-  animation: fadeIn 0.6s ease-out;
+@media (max-width: 640px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.welcome-section {
-  width: 70%;
-  text-align: center;
-  padding: 3rem 2rem;
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-}
-
-/* Skills Section with Elegant Design */
-.skills-section {
-  width: 70%;
-  background-color: white;
-  border-radius: 16px;
-  padding: 2.5rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.03);
-}
-
-.page-margin {
-  display: flex;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-
-.margin-line {
-  width: 6px;
-  height: 48px;
-  background: linear-gradient(to bottom, var(--primary), var(--primary-light));
-  margin-right: 12px;
-  border-radius: 6px;
-}
-
-.margin-content {
-  font-weight: 700;
-  font-size: 1.5rem;
-  color: var(--dark);
-  letter-spacing: -0.5px;
-}
-
-/* Stunning Skill Cards with Hover Effects */
-.skill-card {
-  background: white;
-  border-left: 4px solid var(--primary);
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin-bottom: 1.75rem;
-  min-height: 160px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  border: 1px solid rgba(0, 0, 0, 0.03);
-}
-
-.skill-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(67, 97, 238, 0.1);
-  border-color: var(--primary-light);
-}
-
-.skill-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
-}
-
-.skill-header h2 {
-  font-size: 1.35rem;
-  font-weight: 600;
-  color: var(--dark);
-  letter-spacing: -0.25px;
-}
-
-.skill-level {
-  background-color: var(--primary-light);
-  color: white;
-  padding: 0.3rem 0.8rem;
-  border-radius: 12px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.skill-level.beginner {
-  background-color: #38b000;
-}
-.skill-level.intermediate {
-  background-color: #ffaa00;
-}
-.skill-level.advanced {
-  background-color: #f72585;
-}
-
-.skill-body {
-  margin-top: 1rem;
-}
-
-.resource-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.75rem;
-  color: var(--primary);
-  text-decoration: none;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-.resource-link:hover {
-  color: var(--primary-dark);
-  transform: translateX(3px);
-}
-
-.resource-link svg {
-  width: 16px;
-  height: 16px;
-  fill: currentColor;
-}
-
-/* Beautiful Progress Bar with Animation */
-.skill-progress {
-  background-color: #e2e8f0;
-  height: 10px;
-  border-radius: 10px;
-  overflow: hidden;
-  margin-top: 1rem;
-}
-
-.progress-bar {
-  height: 100%;
-  background: linear-gradient(90deg, var(--primary), var(--accent));
-  border-radius: 10px;
-  transition: width 0.6s cubic-bezier(0.65, 0, 0.35, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.progress-bar::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0.4),
-    rgba(255, 255, 255, 0.1)
-  );
-  animation: shimmer 2s infinite;
-}
-
-@keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .navbar {
-    padding: 1.25rem;
+  from {
+    opacity: 0;
+    transform: translateY(5px);
   }
-  
-  .nav-links {
-    gap: 1rem;
-  }
-  
-  .skills-section,
-  .welcome-section {
-    width: 90%;
-    padding: 1.5rem;
-  }
-  
-  .skill-card {
-    padding: 1.25rem;
-  }
-}
 
-/* Micro-interactions for Enhanced UX */
-button, a, input, textarea {
-  transition: all 0.2s ease;
-}
-
-/* Focus styles for accessibility */
-:focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 2px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
