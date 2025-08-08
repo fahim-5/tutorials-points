@@ -228,7 +228,7 @@ body {
   }
 
   .logo {
-    font-size: 1rem;
+    font-size: 1.4rem;
   }
 }
 
@@ -242,3 +242,4 @@ body {
     transform: translateY(0);
   }
 }
+
