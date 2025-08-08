@@ -1,19 +1,19 @@
 :root {
-  --bg-color: #f5f7fa;
-  --text-color: #222;
-  --accent-color: #4e9af1;
-  --card-bg: #ffffff;
-  --shadow-color: rgba(0, 0, 0, 0.15);
-  --border-color: rgba(0, 0, 0, 0.08);
+  --bg-color: #0a0a0a;
+  --text-color: #00ff9f;
+  --accent-color: #00ff6a;
+  --card-bg: #111;
+  --shadow-color: rgba(0, 255, 150, 0.2);
+  --border-color: rgba(0, 255, 150, 0.1);
 }
 
 body.dark {
-  --bg-color: #181818;
-  --text-color: #f1f1f1;
-  --accent-color: #ff9800;
-  --card-bg: #242424;
-  --shadow-color: rgba(0, 0, 0, 0.5);
-  --border-color: rgba(255, 255, 255, 0.15);
+  --bg-color: #000000;
+  --text-color: #00ff9f;
+  --accent-color: #00ff6a;
+  --card-bg: #101010;
+  --shadow-color: rgba(0, 255, 150, 0.4);
+  --border-color: rgba(0, 255, 150, 0.2);
 }
 
 * {
@@ -23,7 +23,7 @@ body.dark {
 }
 
 body {
-  font-family: "Segoe UI", sans-serif;
+  font-family: "Courier New", monospace;
   background: var(--bg-color);
   color: var(--text-color);
   transition: background 0.3s, color 0.3s;
@@ -36,36 +36,71 @@ body {
   justify-content: space-between;
   gap: 1rem;
   padding: 0.8rem 1.2rem;
-  background: var(--accent-color);
-  color: white;
+  background: var(--card-bg);
+  color: var(--text-color);
   box-shadow: 0 4px 8px var(--shadow-color);
-  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 2px solid var(--border-color);
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
 .logo {
-  font-family: "Poppins", "Inter", system-ui, sans-serif;
-  font-weight: 800;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
   font-size: 1.6rem;
-  letter-spacing: -0.02em;
-   background: white;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--accent-color);
   text-shadow:
-    1px 1px 0 rgba(0,0,0,0.25),  /* sharp edge */
-    2px 2px 4px rgba(0,0,0,0.2), /* soft shadow */
-    4px 4px 6px rgba(0,0,0,0.15); /* extra depth */
-  transform: perspective(500px) rotateX(10deg);
-  display: inline-block;
+    0 0 5px #00ffcc,
+    0 0 10px #00ffcc,
+    0 0 20px #00ffcc;
+  transform: scale(1.05);
 }
-
 
 .nav-links {
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  font-family: 'Courier New', monospace;
+}
+
+.nav-links a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  position: relative;
+  transition: all 0.3s ease;
+  padding: 0.5rem 0;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent-color);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-links a:hover {
+  color: var(--accent-color);
+}
+
+.nav-links a.active {
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+.nav-links a.active::after {
+  width: 100%;
 }
 
 .navbar-actions {
@@ -79,7 +114,7 @@ body {
 .menu-toggle {
   background: transparent;
   border: none;
-  color: white;
+  color: var(--text-color);
   font-size: 1rem;
   cursor: pointer;
   padding: 0.4rem 0.8rem;
@@ -90,11 +125,10 @@ body {
 .nav-links button:hover,
 #theme-toggle:hover,
 .menu-toggle:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 255, 150, 0.1);
   transform: translateY(-2px);
 }
 
-/* Hide hamburger by default (desktop) */
 .menu-toggle {
   display: none;
   font-size: 1.5rem;
@@ -104,14 +138,13 @@ body {
   .nav-links {
     display: none;
     flex-direction: column;
-    background: var(--accent-color);
+    background: var(--card-bg);
     position: absolute;
     top: 70px;
     right: 0;
     width: 200px;
     padding: 0.5rem 0;
     z-index: 1500;
-  
     border-bottom-left-radius: 10px;
     box-shadow: 0 12px 24px var(--shadow-color);
   }
@@ -120,7 +153,6 @@ body {
     display: flex;
   }
 
-  /* Show hamburger on mobile */
   .menu-toggle {
     display: block;
   }
@@ -144,7 +176,6 @@ body {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-/* Card */
 .card {
   background: var(--card-bg);
   border: 1px solid var(--border-color);
@@ -164,6 +195,7 @@ body {
 .card h3 {
   margin: 0.8rem 0;
   font-size: 1.1rem;
+  color: var(--accent-color);
 }
 
 /* Button */
@@ -171,15 +203,15 @@ body {
   display: inline-block;
   padding: 0.4rem 0.8rem;
   background: var(--accent-color);
-  color: white;
+  color: black;
   text-decoration: none;
   border-radius: 6px;
   transition: background 0.2s, transform 0.2s;
+  font-weight: bold;
 }
 
 .btn:hover {
-  background: rgb(120, 18, 18);
- 
+  background: #00c95a;
   transform: scale(1.05);
 }
 
@@ -194,6 +226,10 @@ body {
   .cards {
     grid-template-columns: 1fr;
   }
+
+  .logo {
+    font-size: 1rem;
+  }
 }
 
 @keyframes fadeIn {
@@ -201,10 +237,8 @@ body {
     opacity: 0;
     transform: translateY(5px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-
