@@ -50,9 +50,7 @@ body {
   font-weight: 800;
   font-size: 1.6rem;
   letter-spacing: -0.02em;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 50%, #a5b8d9 100%);
-
-
+   background: white;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -209,3 +207,4 @@ body {
     transform: translateY(0);
   }
 }
+
