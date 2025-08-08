@@ -46,9 +46,24 @@ body {
 }
 
 .logo {
-  font-weight: bold;
-  font-size: 1.4rem;
+  font-family: "Poppins", "Inter", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1.6rem;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 50%, #a5b8d9 100%);
+
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow:
+    1px 1px 0 rgba(0,0,0,0.25),  /* sharp edge */
+    2px 2px 4px rgba(0,0,0,0.2), /* soft shadow */
+    4px 4px 6px rgba(0,0,0,0.15); /* extra depth */
+  transform: perspective(500px) rotateX(10deg);
+  display: inline-block;
 }
+
 
 .nav-links {
   display: flex;
@@ -93,12 +108,13 @@ body {
     flex-direction: column;
     background: var(--accent-color);
     position: absolute;
-    top: 60px;
+    top: 70px;
     right: 0;
     width: 200px;
     padding: 0.5rem 0;
     z-index: 1500;
-    border-radius: 10px;
+  
+    border-bottom-left-radius: 10px;
     box-shadow: 0 12px 24px var(--shadow-color);
   }
 
@@ -164,7 +180,8 @@ body {
 }
 
 .btn:hover {
-  background: #357ac9;
+  background: rgb(120, 18, 18);
+ 
   transform: scale(1.05);
 }
 
