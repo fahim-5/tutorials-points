@@ -81,7 +81,9 @@ body {
   transform: translateY(-2px);
 }
 
+/* Hide hamburger by default (desktop) */
 .menu-toggle {
+  display: none;
   font-size: 1.5rem;
 }
 
@@ -102,6 +104,11 @@ body {
 
   .nav-links.show {
     display: flex;
+  }
+
+  /* Show hamburger on mobile */
+  .menu-toggle {
+    display: block;
   }
 }
 
