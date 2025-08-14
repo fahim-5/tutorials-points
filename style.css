@@ -243,3 +243,72 @@ body {
   }
 }
 
+/* 🌞 Day Mode (default) - Clean white + green */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #2e4d2c;
+  --accent-color: #2eb872;
+  --card-bg: #f9fdfb;
+  --shadow-color: rgba(46, 184, 114, 0.2);
+  --border-color: rgba(46, 184, 114, 0.15);
+}
+
+/* 🌙 Night Mode (Hacker) */
+body.dark {
+  --bg-color: #000000;
+  --text-color: #00ff9f;
+  --accent-color: #00ff6a;
+  --card-bg: #101010;
+  --shadow-color: rgba(0, 255, 150, 0.4);
+  --border-color: rgba(0, 255, 150, 0.2);
+}
+
+/* Keep all your existing layout/styles below unchanged */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Courier New", monospace;
+  background: var(--bg-color);
+  color: var(--text-color);
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 1.2rem;
+  background: var(--card-bg);
+  color: var(--text-color);
+  box-shadow: 0 4px 8px var(--shadow-color);
+  border-bottom: 2px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  font-size: 1.6rem;
+  color: var(--accent-color);
+  text-shadow: none; /* No glow in day mode */
+}
+
+body.dark .logo {
+  text-shadow:
+    0 0 5px #00ffcc,
+    0 0 10px #00ffcc,
+    0 0 20px #00ffcc;
+  transform: scale(1.05);
+}
+
+/* Keep all other styles same as your code... */
+
+
